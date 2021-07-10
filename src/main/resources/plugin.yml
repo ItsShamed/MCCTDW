@@ -1,0 +1,7 @@
+name: MinecraftChatToDiscordWebhook
+version: ${project.version}
+main: me.Shamed.MCCTDW.MCCTDW
+description: ${project.description}
+author: ItsShamed
+prefix: ${project.artifactId}
+load: STARTUP
