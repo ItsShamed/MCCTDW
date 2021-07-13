@@ -1,5 +1,7 @@
 package me.Shamed.MCCTDW.webhook;
 
+import com.sun.istack.internal.Nullable;
+
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -11,7 +13,7 @@ public class WebhookHandler {
     private URL url;
     private Boolean valid;
     private DiscordWebhook discord;
-    private Logger logger;
+    @Nullable private Logger logger;
 
     public WebhookHandler(DiscordWebhook discord, String url){
         try {
@@ -56,6 +58,7 @@ public class WebhookHandler {
         request.start();
     }
 
+    @Nullable
     protected Logger getLogger(){
         return logger;
     }
@@ -108,7 +111,7 @@ public class WebhookHandler {
 
         @Override
         public void run() {
-            HttpURLConnection client = null;
+            HttpURLConnection client;
             try {
                 client = (HttpURLConnection) url.openConnection();
 
@@ -121,7 +124,7 @@ public class WebhookHandler {
                     out.writeBytes(this.json);
                     out.flush();
                 } catch (IOException e){
-                    webhook.getLogger().severe(e.getStackTrace().toString());
+                    if(logger!=null)webhook.getLogger().severe(e.getStackTrace().toString()); else e.printStackTrace();
                     webhook.onFailure("Failed to write outgoing request.");
                 }
 
@@ -132,7 +135,7 @@ public class WebhookHandler {
                 }
 
             } catch (IOException e) {
-                webhook.getLogger().severe(e.getStackTrace().toString());
+                if(logger!=null)webhook.getLogger().severe(e.getStackTrace().toString()); else e.printStackTrace();
                 webhook.onFailure("Failed to open HTTP Connection.");
             }
 
