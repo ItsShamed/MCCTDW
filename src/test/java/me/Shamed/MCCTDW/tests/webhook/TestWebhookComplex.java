@@ -8,10 +8,16 @@ import me.Shamed.MCCTDW.webhook.components.embed.DiscordEmbedAttributes;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Date;
+import java.util.Scanner;
 
 public class TestWebhookComplex {
     public static void main(String[] args) throws MalformedURLException {
-        DiscordWebhook webhook = new DiscordWebhook("https://discord.com/api/webhooks/863180540802105404/plG10QYWAbMqO6szFM22Huc3Zg9nE6p4Bg5n6oU-zPoaWULuqkDFaxaQF0q-c_iMFZGb");
+
+        Scanner scanner = new Scanner(System.in);
+
+        String url = scanner.next();
+
+        DiscordWebhook webhook = new DiscordWebhook(url);
         boolean conTest = webhook.checkIntegrity();
         if(conTest){
             System.out.println("Connection test passed.");
