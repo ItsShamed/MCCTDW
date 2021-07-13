@@ -13,11 +13,11 @@ import java.net.URL;
 import java.util.*;
 
 public class DiscordMessage implements JsonSerializer<DiscordMessage> {
-    @Nullable private String content;
-    @Nullable private String username;
-    @Nullable private URL avatarUrl;
-    private boolean tts = false;
-    @Nullable private DiscordEmbed[] embeds;
+    @Nullable protected String content;
+    @Nullable protected String username;
+    @Nullable protected URL avatarUrl;
+    protected boolean tts = false;
+    @Nullable protected DiscordEmbed[] embeds;
 
     public DiscordMessage(){
 
