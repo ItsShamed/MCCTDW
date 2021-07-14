@@ -1,7 +1,7 @@
 package me.Shamed.MCCTDW.webhook.components.embed;
 
 import com.google.gson.*;
-import com.sun.istack.internal.Nullable;
+import org.jetbrains.annotations.Nullable;
 import me.Shamed.MCCTDW.utils.gson.DateAdapter;
 
 import java.lang.reflect.Type;

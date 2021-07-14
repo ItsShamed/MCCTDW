@@ -1,6 +1,6 @@
 package me.Shamed.MCCTDW.webhook;
 
-import com.sun.istack.internal.Nullable;
+import org.jetbrains.annotations.Nullable;
 
 import java.io.*;
 import java.net.HttpURLConnection;

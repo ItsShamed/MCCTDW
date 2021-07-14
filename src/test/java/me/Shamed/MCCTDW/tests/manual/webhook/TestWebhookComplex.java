@@ -1,4 +1,4 @@
-package me.Shamed.MCCTDW.tests.webhook;
+package me.Shamed.MCCTDW.tests.manual.webhook;
 
 import me.Shamed.MCCTDW.webhook.DiscordWebhook;
 import me.Shamed.MCCTDW.webhook.components.DiscordMessage;

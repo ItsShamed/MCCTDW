@@ -26,9 +26,10 @@ public class PlayerDeathMessage extends DiscordMessage {
         DiscordEmbed embed = new DiscordEmbed();
 
         embed.setTitle(String.format("%s died", player.getName()))
+                .setColor("#FF5555")
                 .setDescription(deathEvent.getDeathMessage())
                 .setThumbnail(new DiscordEmbedAttributes.DiscordEmbedMedia.DiscordEmbedThumbnail(String.format("https://minotar.net/helm/%s/100.png", player.getUniqueId())))
-                .addField(new DiscordEmbedAttributes.DiscordEmbedField("Cause", cause))
+                .addField(new DiscordEmbedAttributes.DiscordEmbedField("Cause/Killer", cause))
                 .addField(new DiscordEmbedAttributes.DiscordEmbedField("Coordinates", String.format("X: %f Y: %f Z: %f", player.getLocation().getX(), player.getLocation().getY(), player.getLocation().getZ()), true));
 
         this.addEmbed(embed);

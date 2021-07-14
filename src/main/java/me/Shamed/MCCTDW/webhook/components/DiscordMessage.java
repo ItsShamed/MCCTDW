@@ -1,8 +1,8 @@
 package me.Shamed.MCCTDW.webhook.components;
 
 import com.google.gson.*;
-import com.sun.istack.internal.NotNull;
-import com.sun.istack.internal.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import me.Shamed.MCCTDW.utils.gson.DateAdapter;
 import me.Shamed.MCCTDW.webhook.components.embed.DiscordEmbed;
 import me.Shamed.MCCTDW.webhook.components.embed.DiscordEmbedAttributes;
