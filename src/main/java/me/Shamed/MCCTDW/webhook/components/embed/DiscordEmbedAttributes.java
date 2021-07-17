@@ -312,7 +312,7 @@ public class DiscordEmbedAttributes {
 
         public DiscordEmbedField(@NotNull String title, @NotNull String text){
             if(title !=null) this.title = title; else throw new NullPointerException("You must specify an field name.");
-            if(text !=null) this.title = text; else throw new NullPointerException("You must specify an field value.");
+            if(text !=null) this.text = text; else throw new NullPointerException("You must specify an field value.");
         }
 
         public DiscordEmbedField(@NotNull String title, @NotNull String text, Boolean inline){

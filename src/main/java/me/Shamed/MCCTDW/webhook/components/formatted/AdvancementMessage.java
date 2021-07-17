@@ -22,7 +22,7 @@ public class AdvancementMessage extends DiscordMessage {
         embed.addField(new DiscordEmbedAttributes.DiscordEmbedField("Achievement", LocaleProvider.translateLocale(convertNamespaceToLocale(event.getAdvancement().getKey().getKey())+".title")))
         .addField(new DiscordEmbedAttributes.DiscordEmbedField("Namespaced Key", event.getAdvancement().getKey().getKey(), true));
 
-        embed.setThumbnail(new DiscordEmbedAttributes.DiscordEmbedMedia.DiscordEmbedThumbnail(String.format("https://minotar.gg/helm/%s/100.png", p.getUniqueId())));
+        embed.setThumbnail(new DiscordEmbedAttributes.DiscordEmbedMedia.DiscordEmbedThumbnail(String.format("https://minotar.net/helm/%s/100.png", p.getUniqueId())));
         this.addEmbed(embed);
 
     }

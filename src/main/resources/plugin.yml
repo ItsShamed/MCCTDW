@@ -5,3 +5,19 @@ description: ${project.description}
 author: ItsShamed
 prefix: ${project.artifactId}
 load: STARTUP
+
+permissions:
+  mcctdw.use:
+    description: Allows you to use the plugin.
+
+commands:
+  dwurl:
+    description: Sets the Discord Webhook URL for MCCTDW.
+    permission: mcctdw.use
+    permission-message: You can't execute this command
+    usage: "Usage: /dwurl <url>"
+
+  dwreload:
+    description: Reloads MCCTDW.
+    permission-message: You can't execute this command
+    permission: mcctdw.use

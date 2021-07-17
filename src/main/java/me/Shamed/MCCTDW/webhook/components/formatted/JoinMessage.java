@@ -10,7 +10,7 @@ public class JoinMessage extends DiscordMessage {
     public JoinMessage(Player player){
         DiscordEmbed embed = new DiscordEmbed();
         embed.setAuthor(new DiscordEmbedAttributes.DiscordEmbedAuthor(String.format("%s joined the game.", player.getName()))
-                .setIcon(String.format("https://minotar.gg/helm/%s/100.png", player.getUniqueId())));
+                .setIcon(String.format("https://minotar.net/helm/%s/100.png", player.getUniqueId())));
         embed.setColor("#55FF55");
 
         this.addEmbed(embed);
