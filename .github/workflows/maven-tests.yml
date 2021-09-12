@@ -1,0 +1,59 @@
+name: Maven tests
+on:
+  push:
+
+jobs:
+  osx-test:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+      - name: Cache local Maven repo
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-maven-
+      - name: Setup Java JDK
+        uses: actions/setup-java@v2
+        with:
+          distribution: zulu
+          java-version: 8
+      - name: Test
+        run: mvn test
+  win-test:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+      - name: Cache local Maven repo
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-maven-
+      - name: Setup Java JDK
+        uses: actions/setup-java@v2
+        with:
+          distribution: zulu
+          java-version: 8
+      - name: Test
+        run: mvn test
+  linux-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+      - name: Cache local Maven repo
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-maven-
+      - name: Setup Java JDK
+        uses: actions/setup-java@v2
+        with:
+          distribution: zulu
+          java-version: 8
+      - name: Test
+        run: mvn test
