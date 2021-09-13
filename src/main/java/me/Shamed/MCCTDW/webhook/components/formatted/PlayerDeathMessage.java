@@ -30,7 +30,7 @@ public class PlayerDeathMessage extends DiscordMessage {
                 .setDescription(deathEvent.getDeathMessage())
                 .setThumbnail(new DiscordEmbedAttributes.DiscordEmbedMedia.DiscordEmbedThumbnail(String.format("https://minotar.net/helm/%s/100.png", player.getUniqueId())))
                 .addField(new DiscordEmbedAttributes.DiscordEmbedField("Cause/Killer", cause))
-                .addField(new DiscordEmbedAttributes.DiscordEmbedField("Coordinates", String.format("X: %f Y: %f Z: %f", player.getLocation().getX(), player.getLocation().getY(), player.getLocation().getZ()), true));
+                .addField(new DiscordEmbedAttributes.DiscordEmbedField("Coordinates", String.format("X: %d Y: %d Z: %d", (int) player.getLocation().getX(), (int)player.getLocation().getY(), (int)player.getLocation().getZ()), true));
 
         this.addEmbed(embed);
     }
