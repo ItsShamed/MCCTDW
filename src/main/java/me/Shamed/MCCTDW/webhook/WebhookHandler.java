@@ -6,6 +6,7 @@ import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.logging.Logger;
 
 public class WebhookHandler {
@@ -131,7 +132,20 @@ public class WebhookHandler {
                 int responseCode = client.getResponseCode();
 
                 if(!(responseCode>=200 && responseCode<300)){
-                    webhook.onFailure("Discord responded with error status "+ responseCode);
+                    if(responseCode==400){
+                        webhook.getLogger().warning("Failed to send message, 400 Bad request");
+                        try(BufferedReader br = new BufferedReader(
+                                new InputStreamReader(client.getInputStream(), StandardCharsets.UTF_8))) {
+                            StringBuilder response = new StringBuilder();
+                            String responseLine = null;
+                            while ((responseLine = br.readLine()) != null) {
+                                response.append(responseLine.trim());
+                            }
+                            webhook.getLogger().warning(response.toString());
+                        }
+                    } else {
+                        webhook.onFailure("Discord responded with error status " + responseCode);
+                    }
                 }
 
             } catch (IOException e) {
