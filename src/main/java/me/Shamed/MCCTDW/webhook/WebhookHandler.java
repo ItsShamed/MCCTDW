@@ -121,8 +121,8 @@ public class WebhookHandler {
                 client.setRequestProperty("Content-Type", "application/json");
 
                 client.setDoOutput(true);
-                try(DataOutputStream out = new DataOutputStream(client.getOutputStream())){
-                    out.writeBytes(this.json);
+                try(BufferedOutputStream out = new BufferedOutputStream(client.getOutputStream())){
+                    out.write(this.json.getBytes(StandardCharsets.UTF_8));
                     out.flush();
                 } catch (IOException e){
                     if(logger!=null)webhook.getLogger().severe(e.getStackTrace().toString()); else e.printStackTrace();
@@ -149,7 +149,12 @@ public class WebhookHandler {
                 }
 
             } catch (IOException e) {
-                if(logger!=null)webhook.getLogger().severe(e.getStackTrace().toString()); else e.printStackTrace();
+                if(logger!=null){
+                    webhook.getLogger().severe(e.getLocalizedMessage());
+                    for(StackTraceElement stack:e.getStackTrace()){
+                        webhook.getLogger().severe(stack.toString());
+                    }
+                } else e.printStackTrace();
                 webhook.onFailure("Failed to open HTTP Connection.");
             }
 
