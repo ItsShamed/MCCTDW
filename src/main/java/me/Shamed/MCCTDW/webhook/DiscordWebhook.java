@@ -51,7 +51,7 @@ public class DiscordWebhook {
 
     public void send(DiscordMessage message){
         try {
-            System.out.println(gson.toJson(message, DiscordMessage.class));
+            plugin.getLogger().info(gson.toJson(message, DiscordMessage.class));
             handler.post(gson.toJson(message, DiscordMessage.class));
         } catch (Exception e){
             if(logger!=null) logger.severe(e.getStackTrace().toString()); else e.printStackTrace();
