@@ -19,8 +19,8 @@ public class ReloadCommandExecutor implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if(commandSender instanceof Player){
-            if(!((Player) commandSender).hasPermission("mcctdw.use")){
-                ((Player) commandSender).sendMessage(ChatColor.translateAlternateColorCodes('&', "&l&cYou are not allowed to execute this command."));
+            if(!commandSender.hasPermission("mcctdw.use")){
+                commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&l&cYou are not allowed to execute this command."));
                 return false;
             }
         }
