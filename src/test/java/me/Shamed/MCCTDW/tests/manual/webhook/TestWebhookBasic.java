@@ -4,7 +4,7 @@ import me.Shamed.MCCTDW.webhook.DiscordWebhook;
 
 public class TestWebhookBasic {
     public static void main(String[] args){
-        DiscordWebhook webhook = new DiscordWebhook("https://discord.com/api/webhooks/863180540802105404/plG10QYWAbMqO6szFM22Huc3Zg9nE6p4Bg5n6oU-zPoaWULuqkDFaxaQF0q-c_iMFZGb");
+        DiscordWebhook webhook = new DiscordWebhook("https://discord.com/api/webhooks/1041419605958209568/sA2bX2k4NvyQ1ZQ5KwRrfUjdxzuq-6rYdKSXcb8-NQKWCJSMo4tWgAyK8H5wB0Kzinu2");
         boolean conTest = webhook.checkIntegrity();
         if(conTest){
             System.out.println("Connection test passed.");
