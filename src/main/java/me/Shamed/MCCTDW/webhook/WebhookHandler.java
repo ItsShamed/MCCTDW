@@ -6,6 +6,7 @@ import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.logging.Logger;
 
 public class WebhookHandler {
@@ -120,8 +121,8 @@ public class WebhookHandler {
                 client.setRequestProperty("Content-Type", "application/json");
 
                 client.setDoOutput(true);
-                try(DataOutputStream out = new DataOutputStream(client.getOutputStream())){
-                    out.writeBytes(this.json);
+                try(BufferedOutputStream out = new BufferedOutputStream(client.getOutputStream())){
+                    out.write(this.json.getBytes(StandardCharsets.UTF_8));
                     out.flush();
                 } catch (IOException e){
                     if(logger!=null)webhook.getLogger().severe(e.getStackTrace().toString()); else e.printStackTrace();
@@ -131,11 +132,29 @@ public class WebhookHandler {
                 int responseCode = client.getResponseCode();
 
                 if(!(responseCode>=200 && responseCode<300)){
-                    webhook.onFailure("Discord responded with error status "+ responseCode);
+                    if(responseCode==400){
+                        webhook.getLogger().warning("Failed to send message, 400 Bad request");
+                        try(BufferedReader br = new BufferedReader(
+                                new InputStreamReader(client.getInputStream(), StandardCharsets.UTF_8))) {
+                            StringBuilder response = new StringBuilder();
+                            String responseLine = null;
+                            while ((responseLine = br.readLine()) != null) {
+                                response.append(responseLine.trim());
+                            }
+                            webhook.getLogger().warning(response.toString());
+                        }
+                    } else {
+                        webhook.onFailure("Discord responded with error status " + responseCode);
+                    }
                 }
 
             } catch (IOException e) {
-                if(logger!=null)webhook.getLogger().severe(e.getStackTrace().toString()); else e.printStackTrace();
+                if(logger!=null){
+                    webhook.getLogger().severe(e.getLocalizedMessage());
+                    for(StackTraceElement stack:e.getStackTrace()){
+                        webhook.getLogger().severe(stack.toString());
+                    }
+                } else e.printStackTrace();
                 webhook.onFailure("Failed to open HTTP Connection.");
             }
 

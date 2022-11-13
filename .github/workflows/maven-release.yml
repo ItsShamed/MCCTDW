@@ -1,0 +1,33 @@
+name: Maven tests and release
+on:
+  push:
+    branches:
+      - master
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Cache local Maven repo
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-maven-
+      - name: Setup Java JDK
+        uses: actions/setup-java@v2
+        with:
+          distribution: zulu
+          java-version: 8
+          server-id: github
+      - name: Configure Git
+        run: |
+          git config user.email "actions@github.com"
+          git config user.name "Github Actions"
+      - name: Maven release
+        run: ./mvnw -B release:prepare release:perform
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -9,6 +9,7 @@ import org.bukkit.event.player.PlayerAdvancementDoneEvent;
 
 import java.util.EventListener;
 
+//TODO: Add weapon
 public class AdvancementListener implements Listener {
 
     private MCCTDW plugin;
