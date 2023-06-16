@@ -1,4 +1,4 @@
-name: Maven tests and release
+name: Maven release
 on:
   push:
     branches:
@@ -27,7 +27,11 @@ jobs:
         run: |
           git config user.email "actions@github.com"
           git config user.name "Github Actions"
-      - name: Maven release
-        run: mvn -B release:prepare release:perform
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Maven Release
+        uses: qcastel/github-actions-maven-release@v1.12.39
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          maven-args: "-Dmaven.javadoc.skip=true -DskipTests"
+          git-release-bot-name: "GitHub Actions"
+          git-release-bot-email: "actions@github.com"
+          version-minor: true

@@ -9,12 +9,19 @@
     <version>1.1-SNAPSHOT</version>
     <description>Automatically transfers Minecraft chat in a Discord channel using Webhooks.</description>
 
+    <scm>
+        <connection>scm:git:${project.scm.url}</connection>
+        <developerConnection>scm:git:${project.scm.url}</developerConnection>
+        <url>git@github.com:ItsShamed/MCCTDW.git</url>
+        <tag>HEAD</tag>
+    </scm>
+
     <developers>
         <developer>
-            <id>ItsShamed</id>
-            <name>Shamed</name>
-            <email>thedjplays.gaming@gmail.com</email>
-            <url>https://github.com/ItsShamed</url>
+            <id>tsrk</id>
+            <name>tsrk.</name>
+            <email>tsrk@tsrk.me</email>
+            <url>https://tsrk.me</url>
             <roles>
                 <role>developer</role>
                 <role>author</role>
@@ -102,6 +109,14 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.5.3</version>
+                <configuration>
+                    <scmCommentPrefix>[ci skip]</scmCommentPrefix>
+                </configuration>
             </plugin>
         </plugins>
     </build>
