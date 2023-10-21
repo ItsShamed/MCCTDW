@@ -1,6 +1,7 @@
 package me.Shamed.MCCTDW.utils.gson;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
@@ -20,7 +21,10 @@ public class LocaleProvider {
         Gson gson = new Gson();
         InputStream locale = LocaleProvider.class.getClassLoader().getResourceAsStream("en_us.json");
         JsonObject jsonObject = gson.fromJson(new InputStreamReader(locale, StandardCharsets.UTF_8), JsonObject.class);
-        return jsonObject.get(namespace).getAsString();
+        JsonElement element = jsonObject.get(namespace);
+        if (element == null)
+            return "Locale not found.";
+        return element.getAsString();
 
         
 
