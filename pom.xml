@@ -115,7 +115,7 @@
                 <version>3.0.1</version>
                 <configuration>
                     <goals>
-                        <goal>package</goal>
+                        package
                     </goals>
                     <scmCommentPrefix>[ci skip] </scmCommentPrefix>
                     <allowTimestampedSnapshots>true</allowTimestampedSnapshots>
